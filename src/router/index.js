@@ -8,6 +8,9 @@ import WriteArticle from '@/pages/WriteArticle'
 import WriteQuestion from '@/pages/WriteQuestion'
 import Register from '@/pages/Register'
 import PersonalCenter from '@/pages/PersonalCenter'
+
+import AdminLogin from '@/pages/Admin/AdminLogin'
+import AdminPanel from '@/pages/Admin/AdminPanel'
 Vue.use(Router)
 
 const router = new Router({
@@ -48,6 +51,16 @@ const router = new Router({
       path: '/PersonalCenter',
       name: 'PersonalCenter',
       component: PersonalCenter
+    },
+    {
+      path: '/AdminLogin',
+      name: 'AdminLogin',
+      component: AdminLogin
+    },
+    {
+      path: '/AdminPanel',
+      name: 'AdminPanel',
+      component: AdminPanel
     },
   ]
 })
