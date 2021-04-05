@@ -15,31 +15,59 @@
         v-model="loginPassword"
         placeholder="请输入登录密码"
       ></el-input>
+      <el-row class="card-input">
+        <el-col :span="12">
+          <el-input
+            class="card-input"
+            v-model="verCode"
+            placeholder="请输入验证码"
+          ></el-input>
+        </el-col>
+        <el-col :span="11" :offset="1">
+          <el-image class="captcha" :src="captcha" @click="getCaptcha"></el-image>
+        </el-col>
+      </el-row>
       <el-button class="card-btn" @click="login">登录</el-button>
     </el-card>
   </div>
 </template>
 
 <script>
-import { adminUserLoginService } from "@/utils/server";
+import { adminUserLoginService, captchaService } from "@/utils/server";
 export default {
   name: "AdminLogin",
   data() {
     return {
-      loginAccount: "",
-      loginPassword: "",
+      loginAccount: "ly",
+      loginPassword: "wozhidao",
+      verId: "",
+      verCode: "",
+      captcha: "",
     };
   },
   methods: {
     login() {
-      adminUserLoginService([this.loginAccount, this.loginPassword], (data) => {
-        localStorage.setItem("token", data.data);
-        this.$router.push("AdminPanel");
-      },
+      adminUserLoginService(
+        [this.loginAccount, this.loginPassword,this.verId,this.verCode],
+        (data) => {
+          localStorage.setItem("Authorization", data.data);
+          this.$router.push("AdminPanel");
+        },
         (fail) => {
           this.$message.error("账号或密码错误，若忘记密码可请超级管理员重置");
-        });
+        }
+      );
     },
+    getCaptcha() {
+      captchaService([], (msg) => {
+        this.captcha = "data:image/jpeg;base64,";
+        this.captcha += msg.data.captcha;
+        this.verId = msg.data.uuid;
+      });
+    },
+  },
+  created() {
+    this.getCaptcha();
   },
 };
 </script>
@@ -69,5 +97,8 @@ export default {
   background-color: cadetblue;
   color: white;
   font-size: 17px;
+}
+.captcha{
+  cursor: pointer;
 }
 </style>

@@ -4,22 +4,23 @@
     <el-row>
       <el-col :span="4"> <span class="logo">心理健康后台管理系统</span></el-col>
       <el-col :span="1"><i class="el-icon-s-fold icon"></i></el-col>
-      <el-col :span="5" :offset="14">
-        <el-avatar
-          class="headimg"
-          src="https://cube.elemecdn.com/0/88/03b0d39583f48206768a7534e55bcpng.png"
-        ></el-avatar>
-        <el-dropdown style="height: 35px">
-          <i
-            class="el-icon-caret-bottom"
-            style="color: white; cursor: pointer"
-          ></i>
-          <el-dropdown-menu slot="dropdown">
-            <el-dropdown-item>个人中心</el-dropdown-item>
-            <el-dropdown-item>修改密码</el-dropdown-item>
-            <el-dropdown-item>推出登录</el-dropdown-item>
-          </el-dropdown-menu>
-        </el-dropdown>
+      <el-col :span="3" :offset="16">
+        <div class="headimg">
+          <el-avatar
+            src="https://cube.elemecdn.com/0/88/03b0d39583f48206768a7534e55bcpng.png"
+          ></el-avatar>
+          <el-dropdown style="height: 35px">
+            <i
+              class="el-icon-caret-bottom"
+              style="color: white; cursor: pointer"
+            ></i>
+            <el-dropdown-menu slot="dropdown">
+              <el-dropdown-item>个人中心</el-dropdown-item>
+              <el-dropdown-item>修改密码</el-dropdown-item>
+              <el-dropdown-item>推出登录</el-dropdown-item>
+            </el-dropdown-menu>
+          </el-dropdown>
+        </div>
       </el-col>
     </el-row>
   </div>
@@ -29,20 +30,16 @@
 export default {
   name: "adminHeader",
   data() {
-    return {
-    };
+    return {};
   },
-  mounted() {
-  },
-  methods: {
-
-  },
+  mounted() {},
+  methods: {},
 };
 </script>
 <style scoped>
 .admin-header-box {
   background-color: rgb(0, 21, 41);
-  height: 71px;
+  height: 5%;
   line-height: 3.5em;
 }
 .logo {
@@ -55,6 +52,6 @@ export default {
   line-height: 2.1em;
 }
 .headimg {
-  margin-top: 3%;
+  margin-top: 10%;
 }
 </style>

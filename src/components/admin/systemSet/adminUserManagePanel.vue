@@ -5,13 +5,6 @@
       <el-row>
         <el-col :span="12">
           <el-input
-            v-model="addAccount"
-            class="add-input"
-            placeholder="请输入账号,必填"
-          ></el-input
-        ></el-col>
-        <el-col :span="12">
-          <el-input
             v-model="addName"
             class="add-input"
             placeholder="请输入用户名,必填"
@@ -34,21 +27,6 @@
             <el-option label="女" value="0"> </el-option> </el-select
         ></el-col>
         <el-col :span="12">
-          <el-select
-            class="add-input"
-            v-model="addRoles"
-            multiple
-            placeholder="请选择角色"
-          >
-            <el-option
-              v-for="item in allRoles"
-              :key="item.id"
-              :label="item.roleName"
-              :value="item.id"
-            >
-            </el-option> </el-select
-        ></el-col>
-        <el-col :span="12">
           <el-input
             v-model="addPassword"
             class="add-input"
@@ -65,13 +43,6 @@
     </el-dialog>
     <el-dialog title="编辑管理员用户" :visible.sync="updatePanelVisible">
       <el-row>
-        <el-col :span="12">
-          <el-input
-            v-model="updateAccount"
-            class="add-input"
-            placeholder="请输入账号,必填"
-          ></el-input
-        ></el-col>
         <el-col :span="12">
           <el-input
             v-model="updateName"
@@ -92,25 +63,16 @@
             v-model="updateSex"
             placeholder="请选择性别"
           >
-            <el-option label="男" value="1"> </el-option>
-            <el-option label="女" value="0"> </el-option> </el-select
+            <el-option label="男" :value="1"> </el-option>
+            <el-option label="女" :value="0"> </el-option> </el-select
         ></el-col>
         <el-col :span="12">
-          <el-select
+          <el-input
+            v-model="updatePassword"
             class="add-input"
-            v-model="updateRoles"
-            multiple
-            placeholder="请选择角色"
-          >
-            <el-option
-              v-for="item in allRoles"
-              :key="item.id"
-              :label="item.roleName"
-              :value="item.id"
-            >
-            </el-option>
-          </el-select>
-        </el-col>
+            placeholder="请输入登录密码,必填"
+          ></el-input
+        ></el-col>
         <el-button
           type="primary"
           style="float: right; margin: 3% 5% 0 0"
@@ -122,26 +84,29 @@
     <el-row>
       <el-col :span="6"
         ><el-input
-          v-model="searchAccount"
-          placeholder="输入账号搜索"
+          v-model="searchNo"
+          placeholder="输入编号搜索"
           size="mini"
           style="width: 80%"
+          clearable
         ></el-input
       ></el-col>
       <el-col :span="6"
         ><el-input
-          v-model="searchName"
-          placeholder="输入名称搜索"
+          v-model="searchUserName"
+          placeholder="输入用户名搜索"
           size="mini"
           style="width: 80%"
+          clearable
         ></el-input
       ></el-col>
       <el-col :span="6"
         ><el-input
-          v-model="searchSex"
-          placeholder="输入性别搜索"
+          v-model="searchPhone"
+          placeholder="输入手机号搜索"
           size="mini"
           style="width: 80%"
+          clearable
         ></el-input
       ></el-col>
       <el-col :span="6"
@@ -162,20 +127,20 @@
       :cell-style="{ textAlign: 'center' }"
     >
       <el-table-column type="selection" width="45"> </el-table-column>
-      <el-table-column label="用户账号" width="120" sortable>
+      <el-table-column label="编号" width="120" sortable>
         <template slot-scope="scope">
-          <span style="margin-left: 10px">{{ scope.row.loginAccount }}</span>
+          <span style="margin-left: 10px">{{ scope.row.no }}</span>
         </template>
       </el-table-column>
       <el-table-column label="用户名" width="120" sortable>
         <template slot-scope="scope">
-          <span style="margin-left: 10px">{{ scope.row.staffName }}</span>
+          <span style="margin-left: 10px">{{ scope.row.username }}</span>
         </template>
       </el-table-column>
       <el-table-column label="性别" width="80" sortable>
         <template slot-scope="scope">
           <span style="margin-left: 10px">{{
-            scope.row.staffSex == 0 ? "女" : "男"
+            scope.row.sex == 0 ? "女" : "男"
           }}</span>
         </template>
       </el-table-column>
@@ -189,24 +154,18 @@
       <el-table-column label="角色" width="200" sortable>
         <template slot-scope="scope">
           <el-tag style="margin-left: 10px">{{
-            scope.row.roles.length == 0 ? "暂空" : arrToString(scope.row.roles)
+            scope.row.roleNames == null ? "暂空" : scope.row.roleNames
           }}</el-tag>
         </template>
       </el-table-column>
-      <el-table-column label="创建时间" width="120" sortable>
+      <el-table-column label="创建时间" width="220" sortable>
         <template slot-scope="scope">
           <span style="margin-left: 10px">{{
-            scope.row.createTime.substring(0, 10)
+            scope.row.crtTime == null ? "未知" : scope.row.crtTime
           }}</span>
         </template>
       </el-table-column>
-      <el-table-column label="状态" width="80" sortable>
-        <template slot-scope="scope">
-          <span style="margin-left: 10px">{{
-            scope.row.staffStatus == 1 ? "启用" : "禁用"
-          }}</span>
-        </template>
-      </el-table-column>
+
       <el-table-column label="操作">
         <template slot-scope="scope">
           <el-button
@@ -217,7 +176,7 @@
           <el-button
             size="mini"
             type="danger"
-            @click="deleteAdminUser(scope.$index, scope.row.loginAccount)"
+            @click="deleteAdminUser(scope.$index, scope.row.id)"
             >删除</el-button
           >
           <el-button
@@ -246,25 +205,24 @@ export default {
   name: "adminUserManagePanel",
   data() {
     return {
-      searchAccount: null,
-      searchName: null,
-      searchSex: null,
+      searchUserName: null,
+      searchNo: null,
+      searchPhone: null,
+
       adminUserData: [],
+
       addPanelVisible: false,
       updatePanelVisible: false,
 
-      addAccount: "",
       addName: "",
       addPhone: "",
       addSex: "",
-      addRoles: "",
       addPassword: "",
 
-      updateAccount: "",
+      updateId: "",
       updateName: "",
       updatePhone: "",
       updateSex: "",
-      updateRoles: "",
       updatePassword: "",
 
       allRoles: [],
@@ -275,7 +233,7 @@ export default {
       let re = arr[0].roleName;
       arr.forEach((element, index) => {
         if (index != 0) {
-          re += "、" + element.roleName;
+          re += "," + element.roleName;
         }
       });
       return re;
@@ -287,7 +245,7 @@ export default {
     },
     search() {
       selectAdminUserService(
-        [this.searchAccount, this.searchName, this.searchSex],
+        [this.searchNo, this.searchUserName, this.searchPhone],
         (data) => {
           this.adminUserData = data.data;
         }
@@ -306,34 +264,27 @@ export default {
     },
     showUpdatePanel(index, row) {
       this.updatePanelVisible = true;
-      this.updateAccount = row.loginAccount;
-      this.updateName = row.staffName;
+      this.updateName = row.username;
       this.updatePhone = row.phone;
-      this.updateSex = row.staffSex;
-      this.updateRoles = row.roles.map((role) => {
-        return role.id;
-      });
-      selectAdminRoleService([], (data) => {
-        this.allRoles = data.data;
-      });
+      this.updateSex = row.sex;
+      this.updateId = row.id;
     },
     addAdminUser() {
       addAdminUserService(
-        [
-          this.addAccount,
-          this.addPassword,
-          this.addName,
-          this.addSex,
-          this.addPhone,
-          this.addRoles,
-        ],
+        [this.addName, this.addPassword, this.addSex, this.addPhone],
         (data) => {
           this.$message({
             message: "添加成功",
             type: "success",
           });
           this.addPanelVisible = false;
-          this.$router.go(0);
+          this.adminUserData.push({
+            no: "刷新后生成",
+            username: this.addName,
+            password: this.addPassword,
+            sex: this.addSex,
+            phone: this.addPhone,
+          });
         },
         (data) => {
           this.$message({
@@ -346,19 +297,26 @@ export default {
     updateAdminUser() {
       updateAdminUserService(
         [
-          this.updateAccount,
+          this.updateId,
           this.updateName,
+          this.updatePassword == "" ? null : this.updatePassword,
           this.updateSex,
           this.updatePhone,
-          this.updateRoles,
         ],
         (data) => {
+          this.adminUserData.forEach((item) => {
+            console.log(this.updateSex);
+            if (item.id == this.updateId) {
+              item.username = this.updateName;
+              item.sex = this.updateSex;
+              item.phone = this.updatePhone;
+            }
+          });
           this.$message({
             message: "修改成功",
             type: "success",
           });
-          this.addPanelVisible = false;
-          this.$router.go(0);
+          this.updatePanelVisible = false;
         },
         (data) => {
           this.$message({
@@ -368,9 +326,10 @@ export default {
         }
       );
     },
-    deleteAdminUser(index, account) {
+    deleteAdminUser(index, id) {
       deleteAdminUserService(
-        [account],
+        id,
+        [],
         (data) => {
           this.$message({
             message: "删除成功",
@@ -407,6 +366,7 @@ export default {
   created() {
     selectAllAdminUserService([], (data) => {
       this.adminUserData = data.data;
+      console.log(data.data);
     });
   },
 };
