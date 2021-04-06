@@ -32,10 +32,10 @@
 </template>
 
 <script>
-import HeadMenu from "../components/home/headMenu.vue";
+import HeadMenu from "../../components/home/headMenu.vue";
 import { mavonEditor } from "mavon-editor";
 import "mavon-editor/dist/css/index.css";
-import LoTags from "../components/self/lo-tags.vue";
+import LoTags from "../../components/self/lo-tags.vue";
 export default {
   name: "WriteArticle",
   data() {

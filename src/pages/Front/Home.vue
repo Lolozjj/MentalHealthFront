@@ -20,7 +20,7 @@ import headMenu from "@/components/home/headMenu";
 import articlePanel from "@/components/home/articlePanel";
 import BBSPanel from "@/components/home/BBSPanel";
 import footer from "@/components/home/footer";
-import Footer from '../components/home/footer.vue';
+import Footer from '../../components/home/footer.vue';
 export default {
   name: "Home",
   data() {

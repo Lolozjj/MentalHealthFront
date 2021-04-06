@@ -1,8 +1,8 @@
 <!--  -->
 <template>
   <div>
-    <el-row>
-      <el-col :span="8">
+    <el-row >
+      <el-col :span="8" >
         <el-card class="card">
           <el-avatar
             class="head"
@@ -13,9 +13,13 @@
           <div class="first card-text">员工号：{{ info.no }}</div>
           <div class="card-text">
             账号权限：
-            <el-tag size="mini" v-for="(item, index) in roles" :key="index" style="margin-right:3%">{{
-              item
-            }}</el-tag>
+            <el-tag
+              size="mini"
+              v-for="(item, index) in roles"
+              :key="index"
+              style="margin-right: 3%"
+              >{{ item }}</el-tag
+            >
           </div>
         </el-card>
       </el-col>
@@ -119,14 +123,13 @@ export default {
       this.updateSex = this.info.sex + "";
       this.updatePhone = this.info.phone;
       this.roles = this.info.roleNames.split(",");
-      console.log(1, this.roles);
     });
   },
 };
 </script>
 <style scoped>
 .card {
-  height: 600px;
+  height: 550px;
   margin-left: 10%;
   margin-right: 5%;
 }

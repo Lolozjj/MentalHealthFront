@@ -38,8 +38,8 @@ export default {
   name: "AdminLogin",
   data() {
     return {
-      loginAccount: "ly",
-      loginPassword: "wozhidao",
+      loginAccount: "ly123",
+      loginPassword: "wozhidao.",
       verId: "",
       verCode: "",
       captcha: "",

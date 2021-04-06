@@ -15,9 +15,9 @@
               style="color: white; cursor: pointer"
             ></i>
             <el-dropdown-menu slot="dropdown">
-              <el-dropdown-item>个人中心</el-dropdown-item>
+              <el-dropdown-item @click.native="goPersonCenter">个人中心</el-dropdown-item>
               <el-dropdown-item>修改密码</el-dropdown-item>
-              <el-dropdown-item>推出登录</el-dropdown-item>
+              <el-dropdown-item @click.native="logout">推出登录</el-dropdown-item>
             </el-dropdown-menu>
           </el-dropdown>
         </div>
@@ -32,8 +32,15 @@ export default {
   data() {
     return {};
   },
-  mounted() {},
-  methods: {},
+  methods: {
+    goPersonCenter(){
+      this.$router.push("/admin/System/personCenter/myInfo");
+    },
+    logout(){
+      localStorage.removeItem('Authorization');
+      this.$router.push("AdminLogin")
+    }
+  },
 };
 </script>
 <style scoped>

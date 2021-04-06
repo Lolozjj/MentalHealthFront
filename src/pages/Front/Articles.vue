@@ -12,8 +12,8 @@
 </template>
 
 <script>
-import AllArticlesPanel from "../components/articles/allArticlesPanel.vue";
-import HeadMenu from "../components/home/headMenu.vue";
+import AllArticlesPanel from "../../components/articles/allArticlesPanel.vue";
+import HeadMenu from "../../components/home/headMenu.vue";
 export default {
   name: "Articles",
   data() {

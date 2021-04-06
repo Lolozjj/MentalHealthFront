@@ -49,9 +49,9 @@
   </div>
 </template>
 <script>
-import headMenu from "../components/home/headMenu.vue";
-import QuestionRigthPanel from '../components/question/QuestionRigthPanel.vue';
-import LoTags from '../components/self/lo-tags.vue';
+import headMenu from "../../components/home/headMenu.vue";
+import QuestionRigthPanel from '../../components/question/QuestionRigthPanel.vue';
+import LoTags from '../../components/self/lo-tags.vue';
 export default {
   components: { headMenu, LoTags, QuestionRigthPanel },
   name: "WriteQuestion",

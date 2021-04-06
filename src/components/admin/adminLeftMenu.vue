@@ -2,7 +2,6 @@
 <template>
   <div>
     <el-menu
-      default-active="2-2"
       background-color="#001529"
       text-color="#A0AAAE"
       active-text-color="#ffd04b"

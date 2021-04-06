@@ -17,10 +17,10 @@
 </template>
 
 <script>
-import HeadMenu from "../components/home/headMenu.vue";
-import AllQuestionsPanel from '../components/question/AllQuestionsPanel.vue';
-import QuestionHeadPanel from '../components/question/QuestionHeadPanel.vue';
-import QuestionRigthPanel from '../components/question/QuestionRigthPanel.vue';
+import HeadMenu from "../../components/home/headMenu.vue";
+import AllQuestionsPanel from '../../components/question/AllQuestionsPanel.vue';
+import QuestionHeadPanel from '../../components/question/QuestionHeadPanel.vue';
+import QuestionRigthPanel from '../../components/question/QuestionRigthPanel.vue';
 export default {
   name: "Questions",
   data() {

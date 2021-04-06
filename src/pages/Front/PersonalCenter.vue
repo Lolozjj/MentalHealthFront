@@ -24,9 +24,9 @@
 <script>
 import headMenu from "@/components/home/headMenu";
 import postcard from "@/components/personalCenter/postcard";
-import Tabs from "../components/personalCenter/tabs.vue";
-import WriteAndAnswer from "../components/personalCenter/writeAndAnswer.vue";
-import RecommendArticle from '../components/personalCenter/RecommendArticle.vue';
+import Tabs from "../../components/personalCenter/tabs.vue";
+import WriteAndAnswer from "../../components/personalCenter/writeAndAnswer.vue";
+import RecommendArticle from '../../components/personalCenter/RecommendArticle.vue';
 export default {
   name: "PersonalCenter",
   data() {
