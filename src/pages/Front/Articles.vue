@@ -5,7 +5,7 @@
     <div class="content">
       <el-row>
         <el-col :span="13" :offset="2"><all-articles-panel></all-articles-panel></el-col>
-        <el-col :span="9">1</el-col>
+        <el-col :span="6" style="margin-left:2%"><right-article-panel></right-article-panel></el-col>
       </el-row>
     </div>
   </div>
@@ -13,6 +13,7 @@
 
 <script>
 import AllArticlesPanel from "../../components/articles/allArticlesPanel.vue";
+import RightArticlePanel from '../../components/articles/rightArticlePanel.vue';
 import HeadMenu from "../../components/home/headMenu.vue";
 export default {
   name: "Articles",
@@ -20,7 +21,7 @@ export default {
     return {};
   },
 
-  components: { HeadMenu, AllArticlesPanel },
+  components: { HeadMenu, AllArticlesPanel, RightArticlePanel },
 
   methods: {},
 };
@@ -30,7 +31,7 @@ export default {
     background-color: rgb(243,244,245);
 }
 .content {
-  margin-top: 4.7%;
+  margin-top: 3%;
   padding: 3% 3%;
 }
 </style>

@@ -63,6 +63,7 @@ export default {
         this.captcha = "data:image/jpeg;base64,";
         this.captcha += msg.data.captcha;
         this.verId = msg.data.uuid;
+        console.log(msg);
       });
     },
   },

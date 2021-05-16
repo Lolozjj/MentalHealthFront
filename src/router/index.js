@@ -3,7 +3,11 @@ import Router from 'vue-router'
 import Self from '@/components/self/Self'
 import Home from '@/pages/Front/Home'
 import Articles from '@/pages/Front/Articles'
+import ArticleDetail from '@/pages/Front/ArticleDetail'
 import Questions from '@/pages/Front/Questions'
+import QuestionDetail from '@/pages/Front/QuestionDetail'
+import TestPaper from '@/pages/Front/TestPaper'
+import Chatbot from '@/pages/Front/Chatbot'
 import WriteArticle from '@/pages/Front/WriteArticle'
 import WriteQuestion from '@/pages/Front/WriteQuestion'
 import Register from '@/pages/Front/Register'
@@ -21,8 +25,11 @@ import roleAssignmentPanel from '@/components/admin/systemSet/roleAssignmentPane
 import permissionsAssignmentPanel from '@/components/admin/systemSet/permissionsAssignmentPanel'
 
 import personInfo from '@/components/admin/personCenter/personInfo'
+
+import articleManagerPanel from '@/components/admin/dataManager/articleManagerPanel'
+import questionManagerPanel from '@/components/admin/dataManager/questionManagerPanel'
 Vue.use(Router)
-let router=""
+let router = ""
 
 router = new Router({
   routes: [{
@@ -42,9 +49,26 @@ router = new Router({
       name: 'Articles',
       component: Articles
     }, {
+      path: '/ArticleDetail',
+      name: 'ArticleDetail',
+      component: ArticleDetail
+    }, {
       path: '/Questions',
       name: 'Questions',
       component: Questions
+    }, {
+      path: '/QuestionDetail',
+      name: 'QuestionDetail',
+      component: QuestionDetail
+    }, {
+      path: '/TestPapers',
+      name: 'TestPapers',
+      component: TestPaper
+    },
+    {
+      path: '/Chatbot',
+      name: 'Chatbot',
+      component: Chatbot
     }, {
       path: '/WriteArticle',
       name: 'WriteArticle',
@@ -97,6 +121,15 @@ router = new Router({
         {
           path: '/admin/System/personCenter/myInfo',
           component: personInfo
+        },
+        {
+          path: '/admin/System/dataManager/articleManager',
+          component: articleManagerPanel
+        },
+
+        {
+          path: '/admin/System/dataManager/questionManager',
+          component: questionManagerPanel
         },
       ]
     },

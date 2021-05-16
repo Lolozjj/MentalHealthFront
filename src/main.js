@@ -6,10 +6,12 @@ import router from './router'
 import store from './store/store'
 import ElementUI from 'element-ui';
 import 'element-ui/lib/theme-chalk/index.css';
-
+import Utils from './utils/base.js'
+import FrontService from './utils/frontServer.js'
 
 
 Vue.config.productionTip = false
+Vue.prototype.utils=Utils;
 Vue.use(ElementUI);
 
 /* eslint-disable no-new */

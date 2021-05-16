@@ -4,7 +4,7 @@ import router from '@/router/index.js'
 /**
  * 后端服务的地址
  */
-const ADMIN_PORTURL = "http://" + window.location.hostname + ":8765/";
+const ADMIN_PORTURL = "http://" + window.location.hostname + ":8766/";
 
 /**
  * 响应码
@@ -12,10 +12,6 @@ const ADMIN_PORTURL = "http://" + window.location.hostname + ":8765/";
 const SUCCEED_CODE = 200;
 const FAIL_CODE = 500;
 
-/**
- * token header key
- */
-const TOKEN_HEADER = 'Authorization'
 
 /**
  * 默认ajax请求成功后 响应码200 执行事件
@@ -336,14 +332,14 @@ const updateAdminMenuByRoleService = postServiceTakeTokenTemplate("adminMenu/set
 /**
  * 获取当前登录的管理员信息
  */
- const getLoginAdminUserInfo = getServiceTakeTokenTemplate("auth/myInfo")
+const getLoginAdminUserInfo = getServiceTakeTokenTemplate("auth/myInfo")
 /************************************************************************************** */
-
-
-
 const updateLoginAdminUserInfo = postServiceTakeTokenTemplate("admin/person/update", ["staffName", "phone", "staffSex"])
-
-
+/************************************************************************************** */
+const deleteArticleByIdService = deleteServiceTakeTokenTemplate("information/article/")
+const getArticleBySelectiveService = postServiceTakeTokenTemplate("information/article/selective",["id", "crtUser", "title"])
+const deleteQuestionByIdService = deleteServiceTakeTokenTemplate("information/question/")
+const getQuestionBySelectiveService = postServiceTakeTokenTemplate("information/question/selective")
 export {
   captchaService,
   adminUserLoginService,
@@ -375,4 +371,10 @@ export {
 
   getLoginAdminUserInfo,
   updateLoginAdminUserInfo,
+
+  deleteArticleByIdService,
+  getArticleBySelectiveService,
+  deleteQuestionByIdService,
+  getQuestionBySelectiveService
+
 }

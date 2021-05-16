@@ -64,7 +64,6 @@ export default {
   },
 };
 </script>
-</script>
 <style scoped>
 .el-tag + .el-tag {
   margin-left: 10px;

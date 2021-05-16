@@ -3,10 +3,10 @@
   <div class="recommend-box">
     <span class="recommend-text">推荐文章</span>
     <el-divider class="recommend-divider"></el-divider>
-    <div class="article-box" v-for="(item, index) in articles" :key="index">
+    <div class="article-box" v-for="(item, index) in articles" :key="index" @click="goDetail(item.id)">
       <el-row class="article-item">
         <el-col :span="4">
-          <el-avatar :size="60" :src="item.img"></el-avatar>
+          <el-avatar :size="60" :src="item.imgUrl"></el-avatar>
         </el-col>
         <el-col :span="18" :offset="2">
           <div>
@@ -20,12 +20,13 @@
     </div>
     <el-divider></el-divider>
     <div class="more-article">
-      <a>更多文章>></a>
+      <span @click="goArticle">更多文章>></span>
     </div>
   </div>
 </template>
 
 <script>
+import { getRecommendArticleService } from "@/utils/frontServer";
 export default {
   name: "RecommendArticle",
   data() {
@@ -78,12 +79,22 @@ export default {
       ],
     };
   },
-
-  components: {},
-
-  computed: {},
-
-  methods: {},
+  methods: {
+    goArticle() {
+      this.$router.push("/Articles");
+    },
+    goDetail(id) {
+      this.$router.push({ path: "/ArticleDetail", query: { id: id } });
+    },
+  },
+  created() {
+    getRecommendArticleService
+      .setSucceed((msg) => {
+        console.log(msg);
+        this.articles=msg.data;
+      })
+      .sendGetService();
+  },
 };
 </script>
 <style scoped>
@@ -100,14 +111,19 @@ export default {
 }
 .article-box {
   margin-top: 0%;
+  cursor:pointer;
   padding: 0;
 }
 .article-item {
   margin-top: 6%;
 }
-.more-article{
+.more-article {
   text-align: center;
-  color: rgb(146,180,219);
+  cursor: pointer;
+  color: rgb(146, 180, 219);
+}
+.more-article:hover {
+  color: rgb(98, 109, 122);
 }
 .title-text {
   font-size: 14px;

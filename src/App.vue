@@ -1,35 +1,42 @@
 <template>
   <div id="app">
-    <router-view/>
+    <router-view />
   </div>
 </template>
 
 <script>
 export default {
-  name: 'App',
-  provide () {
+  name: "App",
+  provide() {
     return {
-      reload: this.reload
-    }
+      reload: this.reload,
+    };
   },
-  data () {
+  data() {
     return {
-      isRouterShow: true
-    }
+      isRouterShow: true,
+    };
   },
   methods: {
-    async reload () {
-      this.isRouterShow = false
-      await this.$nextTick()
-      this.isRouterShow = true
-    }
-  }
-}
+    async reload() {
+      this.isRouterShow = false;
+      await this.$nextTick();
+      this.isRouterShow = true;
+    },
+  },
+};
 </script>
 
 <style>
-body{
+body {
   margin: 0;
   padding: 0;
+}
+.icon {
+  width: 1em;
+  height: 1em;
+  vertical-align: -0.15em;
+  fill: currentColor;
+  overflow: hidden;
 }
 </style>

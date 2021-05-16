@@ -1,88 +1,97 @@
 <!-- 问题展示面板 -->
 <template>
   <div class="all-question-box">
-    <div class="questions-item" v-for="(item, index) in questions" :key="index">
+    <div class="question-head-box">
       <el-row>
-        <el-col :span="2"
-          ><el-avatar :src="item.headImg" :size="40"></el-avatar
-        ></el-col>
-        <el-col :span="19" >
-          <span class="title-text">{{ item.title }}</span></el-col
+        <el-col
+          :class="['head-item',{ activeMenu: item.id == activeMenu }]"
+          :span="6"
+          v-for="(item,index) in menus"
+          :key="index"
+          @click.native="clickMenu(item.id)"
         >
-        <el-col :span="3">
-          <el-button class="go-answer-btn" size="mini"
-            >去回答</el-button
-          ></el-col
-        >
-      </el-row>
-      <el-row>
-        <el-col :span="21" :offset="2" class="content-text">
-          {{ item.content }}
-        </el-col>
-      </el-row>
-      <el-row>
-        <el-col :span="21" :offset="2" style="margin-top:5%">
-          <span>{{ item.createTime }}</span>
-          <span>回答{{ item.answerNnum }}</span>
+          <svg class="icon" aria-hidden="true">
+            <use :xlink:href="'#'+item.icon" />
+          </svg>
+          <span>{{item.title}}</span>
         </el-col>
       </el-row>
     </div>
+    <RecommendAnswerPanel  v-show="activeMenu==1"></RecommendAnswerPanel>
+    <RecommendQuestionPanel :activeMenu='2' v-show="activeMenu==2"></RecommendQuestionPanel>
+    <RecommendQuestionPanel :activeMenu='3' v-show="activeMenu==3"></RecommendQuestionPanel>
+    <RecommendQuestionPanel :activeMenu='4' v-show="activeMenu==4"></RecommendQuestionPanel>
   </div>
 </template>
 
 <script>
+import RecommendAnswerPanel from "../../components/question/RecommendAnswerPanel.vue";
+import RecommendQuestionPanel from "./RecommendQuestionPanel.vue";
+
 export default {
   data() {
     return {
-      questions: [
+      
+      menus: [
         {
-          id: 0,
-          headImg:
-            "https://cube.elemecdn.com/0/88/03b0d39583f48206768a7534e55bcpng.png",
-          title: "考试前太紧张、太焦虑，怎么学会自我调节？",
-          content:
-            "每次考试之前都很焦虑，可能因为心虚吧哈哈哈知道自己可能考的成绩不理想，但还是难以控制焦虑紧张的心情，越到考试越容易失眠，每次一想到自己达又不到自己的期望和目标就很急躁，不会自我调节情绪。特别有的时候做题越做错的越多，直接崩溃了……我甚至都能想象出考试时候的样子了，但还是很焦虑很紧张，我觉得这样太影响我考试了，希望得到大家的帮助，谢谢??",
-          answerNnum: 0,
-          createTime: "2021-1-31",
+          id: 1,
+          title: "推荐回答",
+          icon: "lo-answer",
         },
         {
-          id: 0,
-          headImg:
-            "https://cube.elemecdn.com/0/88/03b0d39583f48206768a7534e55bcpng.png",
-          title: "考试前太紧张、太焦虑，怎么学会自我调节？",
-          content:
-            "每次考试之前都很焦虑，可能因为心虚吧哈哈哈知道自己可能考的成绩不理想，但还是难以控制焦虑紧张的心情，越到考试越容易失眠，每次一想到自己达又不到自己的期望和目标就很急躁，不会自我调节情绪。特别有的时候做题越做错的越多，直接崩溃了……我甚至都能想象出考试时候的样子了，但还是很焦虑很紧张，我觉得这样太影响我考试了，希望得到大家的帮助，谢谢??",
-          answerNnum: 0,
-          createTime: "2021-1-31",
+          id: 2,
+          title: "推荐问题",
+          icon: "lo-recommend",
+        },
+        {
+          id: 3,
+          title: "最新问题",
+          icon: "lo-time",
+        },
+        {
+          id: 4,
+          title: "站内最火",
+          icon: "lo-fire",
         },
       ],
+      activeMenu: 2,
+      recommendQuestion: [],
+      newQuestion: [],
+      hotQuestion: [],
     };
   },
-
-  methods: {},
+  components: {
+    RecommendAnswerPanel,
+    RecommendQuestionPanel,
+  },
+  methods: {
+    clickMenu(val) {
+      this.activeMenu = val;
+      this.curPage = 1;
+    },
+    
+  },
 };
 </script>
 <style scoped>
 .all-question-box {
-  margin-top: 5%;
 }
-.questions-item {
+.question-head-box {
   background-color: white;
   border-radius: 10px;
-  padding: 2% 3%;
-  margin-top: 3%;
+  padding: 3% 0;
+  text-align: center;
+  color: rgb(51, 51, 51);
+  font-weight: 500;
+  font-size: 18px;
 }
-.title-text {
-  font-size: 20px;
-  font-weight: 600;
-  line-height: 3em;
+.head-item {
+  cursor: pointer;
 }
-.go-answer-btn {
-  color: white;
-  background-color: rgb(11, 139, 255);
-  border-radius: 5px;
+.head-item:hover {
+  color: rgb(96, 174, 248);
 }
-.content-text{
-    color: rgb(153,153,153);
+.activeMenu {
+  color: rgb(11, 139, 255);
 }
 </style>

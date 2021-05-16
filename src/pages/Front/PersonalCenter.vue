@@ -1,19 +1,19 @@
 <!-- 个人主页 -->
 <template>
   <div>
-    <head-menu></head-menu>
+    <HeadMenu></HeadMenu>
     <div class="personal-center-box">
       <el-row>
         <el-col :span="11" :offset="4">
           <div class="left-box">
-            <postcard></postcard>
-            <tabs class="tabs"></tabs>
+            <Postcard></Postcard>
+            <Tabs class="tabs"></Tabs>
           </div>
         </el-col>
         <el-col :span="5" :offset="1">
           <div class="right-box">
-            <write-and-answer></write-and-answer>
-            <recommend-article class="recommend-article"></recommend-article>
+            <WriteAndAnswer></WriteAndAnswer>
+            <RecommendArticle class="recommend-article"></RecommendArticle>
           </div>
         </el-col>
       </el-row>
@@ -22,11 +22,11 @@
 </template>
 
 <script>
-import headMenu from "@/components/home/headMenu";
-import postcard from "@/components/personalCenter/postcard";
 import Tabs from "../../components/personalCenter/tabs.vue";
 import WriteAndAnswer from "../../components/personalCenter/writeAndAnswer.vue";
 import RecommendArticle from '../../components/personalCenter/RecommendArticle.vue';
+import Postcard from '../../components/personalCenter/postcard.vue';
+import HeadMenu from '../../components/home/headMenu.vue';
 export default {
   name: "PersonalCenter",
   data() {
@@ -34,11 +34,11 @@ export default {
   },
 
   components: {
-    "head-menu": headMenu,
-    postcard: postcard,
     Tabs,
     WriteAndAnswer,
     RecommendArticle,
+    Postcard,
+    HeadMenu,
   },
   methods: {},
 };

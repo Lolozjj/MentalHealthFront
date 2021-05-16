@@ -1,26 +1,26 @@
-<!--  -->
+<!-- 首页 -->
 <template>
   <div>
-    <head-menu></head-menu>
+    <HeadMenu></HeadMenu>
     <div class="content">
       <el-carousel class="carousel">
         <el-carousel-item v-for="item in carouselImgs" :key="item">
           <el-image class="car-img" :src="item" fit="cover"></el-image>
         </el-carousel-item>
       </el-carousel>
-      <article-panel></article-panel>
-      <bbs-panel></bbs-panel>
-      <footer-menu></footer-menu>
+      <ArticlePanel></ArticlePanel>
+      <BBSPanel></BBSPanel>
+      <Footer></Footer>
     </div>
   </div>
 </template>
 
 <script>
-import headMenu from "@/components/home/headMenu";
-import articlePanel from "@/components/home/articlePanel";
-import BBSPanel from "@/components/home/BBSPanel";
-import footer from "@/components/home/footer";
-import Footer from '../../components/home/footer.vue';
+
+import Footer from "../../components/home/footer.vue";
+import ArticlePanel from "../../components/home/articlePanel.vue";
+import BBSPanel from "../../components/home/BBSPanel.vue";
+import HeadMenu from '../../components/home/headMenu.vue';
 export default {
   name: "Home",
   data() {
@@ -31,17 +31,12 @@ export default {
       ],
     };
   },
-
   components: {
-    "head-menu": headMenu,
-    "article-panel": articlePanel,
-    "bbs-panel":BBSPanel,
-    "footer-menu":footer
+    Footer,
+    ArticlePanel,
+    BBSPanel,
+    HeadMenu,
   },
-
-  computed: {},
-
-  methods: {},
 };
 </script>
 <style scoped>
@@ -52,7 +47,7 @@ export default {
 .carousel {
   border-bottom: 1px solid rgb(221, 221, 221);
 }
-.car-img{
+.car-img {
   height: 100%;
 }
 </style>

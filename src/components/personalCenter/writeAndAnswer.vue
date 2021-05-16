@@ -2,10 +2,12 @@
 <template>
   <div class="wa-box">
     <el-row>
-      <el-col class="left" :span="12"
-        ><i class="el-icon-edit-outline icon"></i>  写文章</el-col
-      >
-      <el-col :span="12"><i class="el-icon-chat-line-round icon"></i>  问答</el-col>
+      <el-col class="left" :span="12" @click.native="goWriteArticle">
+        <i class="el-icon-edit-outline icon"></i> 写文章
+      </el-col>
+      <el-col class="right" :span="12" @click.native="goWriteQuestion">
+        <i class="el-icon-chat-line-round icon"></i> 提问
+      </el-col>
     </el-row>
   </div>
 </template>
@@ -16,12 +18,14 @@ export default {
   data() {
     return {};
   },
-
-  components: {},
-
-  computed: {},
-
-  methods: {},
+  methods: {
+    goWriteArticle(){
+      this.$router.push("/WriteArticle");
+    },
+    goWriteQuestion(){
+      this.$router.push("/WriteQuestion");
+    }
+  },
 };
 </script>
 <style scoped>
@@ -34,8 +38,12 @@ export default {
 }
 .left {
   border-right: 1px solid gold;
+  cursor: pointer;
 }
-.icon{
-    font-size: 22px;
+.right{
+  cursor: pointer;
+}
+.icon {
+  font-size: 22px;
 }
 </style>
